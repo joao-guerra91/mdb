@@ -10,7 +10,6 @@ const logger       = require('morgan');
 const path         = require('path');
 
 
-
 mongoose
   .connect('mongodb://localhost/mdb', {useNewUrlParser: true})
   .then(x => {
@@ -42,12 +41,18 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'MoviesDB';
 
 
 
 const index = require('./routes/index');
 app.use('/', index);
+
+const movie = require('./routes/movie');
+app.use('/', movie) 
+
+const auth = require('./routes/auth');
+app.use('/', auth)
 
 
 module.exports = app;
