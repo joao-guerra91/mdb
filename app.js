@@ -8,6 +8,7 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session      = require('express-session');
 
 
 mongoose
@@ -29,6 +30,19 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    cookie: {
+      sameSite: true,
+      httpOnly: true,
+      maxAge: 60000
+    }
+  })
+)
+
+
 
 // Express View engine setup
 
