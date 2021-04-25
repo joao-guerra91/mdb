@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Movie = require('../models/Movie.model');
+// const Movie = require('../models/Movie.model'); não precisamos disto se não criarmos filmes e isso
 // const fileUpload = require('../configs/cloudinary');
-const imdb = require('imdb-api')
+const imdb = require('imdb-api');
+const imdbAPI = process.env.IMDB_KEY //melhor assim do que sempre escrever 'process.env...'
 
 
 
@@ -15,11 +16,21 @@ router.get('/movies', async (req, res) => {
   let results = await imdb.search({
     name: movieName
   }, {
-    apiKey: process.env.IMDB_KEY
+    apiKey: imdbAPI
   })
   
   const moviesArray = results.results;
   res.render('movies-list', {moviesArray})
+});
+
+router.get('/movies/:movieId', async (req, res) => {
+  try {
+  const movie = await imdbAPI.findById(req.params.movieId);
+  res.render('movie-detail', { movie });
+  } catch(e) {
+      res.render('error');
+      console.log(`An error occured (${e})`);
+  }
 });
 
 module.exports = router

@@ -7,18 +7,19 @@ router.get('/login', (req, res) => {
   res.render('auth/login');
 })
 
+// Melhorei as mensagens de erro
 router.post('/login', async (req, res) => {
   const { username, password} = req.body;
   if (username === '' || password === '') {
     res.render('auth/login',
-    { errorMessage: 'Password is too weak' })
+    { errorMessage: 'Indicate username and password.' })
     return;
   }
 
   const user = await User.findOne({ username: username});
   if (user === null) {
     res.render('auth/login',
-    { errorMessage: 'Password is too weak' })
+    { errorMessage: 'Invalid username or password' })
     return;
   }
   // the user and password match
@@ -31,10 +32,17 @@ router.post('/login', async (req, res) => {
   } else{
     //password dont match
     res.render('auth/login',
-    { errorMessage: 'Password is too weak' })
+    { errorMessage: 'Invalid username or password' })
     return;
   }
 });
+//Não faz sentido de aparecer "password is too weak" quando só enganaste a pass lol
+
+//Também meti a opção de logout
+router.post('/logout', async (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
+})
 
 router.get('/signup', (req, res) => {
   res.render('auth/signup');
@@ -50,21 +58,28 @@ router.post('/signup', async (req, res) => {
   return;
   }
 
-  // check for password strength - Regular Expression
+  // Mudei ou remodelei esta parte
+  let user = await User.findOne({ username: username});
+  if (user !== null) {
+    res.render('auth/signup', 
+    { errorMesssage: 'Username already exists'})
+    return;
+  }
+
+  user = await User.findOne({ email: email });
+  if (user !== null) {
+   res.render('auth/signup',
+   { errorMessage: 'Email already exists' })
+   return;
+  };
+
   const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/
   if (passwordRegex.test(password) === false) {
    res.render('auth/signup', 
    { errorMessage: 'Password is too weak' })
    return;
   }
-
-  // check if the user already exist
-  const user = await User.findOne({ username: username});
-  if (user !== null) {
-    res.render('auth/signup', 
-    { errorMesssage: ' username already exists'})
-    return;
-  }
+  //Só para parecer mais realista
 
   // create the user in the database
   const saltRounds = 10;

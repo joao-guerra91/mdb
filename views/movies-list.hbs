@@ -3,7 +3,10 @@
 <ul>
   {{#each moviesArray}}
     <li>
+      <a href="/movies/{{imdbid}}">
       {{title}}
+      </a>
     </li>
+    <img src="{{poster}}" />
   {{/each}}
 </ul>

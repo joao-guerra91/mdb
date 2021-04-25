@@ -1,2 +1,9 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+<br>
+<nav>{{#if user}}Welcome {{user.username}}
+<form action="/logout" method="POST">
+  <button href="/logout">Logout</button>
+</form><a href="watchlist">Watchlist</a>{{else}}<a href="/login">Login</a> <a href="/signup">Sign up</a>{{/if}} <a href="/movies/search">Search</a></nav>
+
+{{!-- Quando entras no site, Só tens a opção de 'Login', 'Signup' e 'Search'. Quando registares ou fazeres login, tens a opçãp de 'Watchlist', 'Search' e o botão para fazeres Logout.  --}}
