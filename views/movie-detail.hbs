@@ -2,3 +2,14 @@
 <hr>
 <img src="{{movie.poster}}" alt="">
 <p>Year: {{movie.year}}</p>
+<p>Time: {{movie.runtime}}</p>
+<p>Director: {{movie.director}}</p>
+<p>Writer: {{movie.writer}}</p>
+<p>Actors: {{movie.actors}}</p>
+<p>Plot: {{movie.plot}}</p>
+<p>Awards: {{movie.awards}}</p>
+<p>Metascore: {{movie.metascore}}</p>
+<p>Rating: {{movie.rating}}</p>
+    <form action="/movies/{{movie.imdbid}}/watchlist" method="POST">
+        <button type="submit">watchlist</button>
+    </form>
