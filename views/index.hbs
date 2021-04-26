@@ -1,9 +1,36 @@
-<h1>{{title}}</h1>
+{{!-- <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
 <br>
 <nav>{{#if user}}Welcome {{user.username}}
 <form action="/logout" method="POST">
   <button href="/logout">Logout</button>
-</form><a href="watchlist">Watchlist</a>{{else}}<a href="/login">Login</a> <a href="/signup">Sign up</a>{{/if}} <a href="/movies/search">Search</a></nav>
+</form><a href="watchlist">Watchlist</a>{{else}}<a href="/login">Login</a> <a href="/signup">Sign up</a>{{/if}} <a href="/movies/search">Search</a></nav> --}}
 
 {{!-- Quando entras no site, Só tens a opção de 'Login', 'Signup' e 'Search'. Quando registares ou fazeres login, tens a opçãp de 'Watchlist', 'Search' e o botão para fazeres Logout.  --}}
+
+
+
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="images/post-cover.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="images/movie-Genres.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="images/comic-movies.jpg" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+

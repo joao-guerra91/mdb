@@ -4,7 +4,7 @@ const User = require('../models/User.model');
 const bcrypt = require('bcryptjs');
 
 router.get('/login', (req, res) => {
-  res.render('auth/login');
+  res.render('auth/login', {layout: 'customLayout'});
 })
 
 // Melhorei as mensagens de erro
@@ -45,7 +45,7 @@ router.post('/logout', async (req, res) => {
 })
 
 router.get('/signup', (req, res) => {
-  res.render('auth/signup');
+  res.render('auth/signup', {layout: 'customLayout'});
 
 });
 
@@ -54,7 +54,7 @@ router.post('/signup', async (req, res) => {
   const {username, email, password} = req.body;
   // checking if username and password are filled out
   if (username=== '' || password === '') {
-    res.render('auth/signup', { errorMessage: 'Indicate username and password' })
+    res.render('auth/signup', { layout: customLayout.hbs, errorMessage: 'Indicate username and password' })
   return;
   }
 

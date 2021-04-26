@@ -1,0 +1,114 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #F8F9FA;
+}
+
+html {
+  margin: 0;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.container {
+  background-color: white;
+  padding: 0;
+}
+
+.row{
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* NAVBAR */
+
+
+
+/* BODY */
+
+
+
+/* FOOTER */
+
+.footer{
+  /* margin-top: 50px ; */
+  margin-bottom: 25px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  color: white;
+  background-color: #2A2C32;
+}
+
+.footer ul{
+  list-style-type: none;
+  line-height: 40px;
+}
+
+.footer a{
+  text-decoration: none;
+  color: white;
+}
+
+.list{
+  text-decoration: none;
+  text-align: left;
+}
+
+.newsletter-btn{
+  color: white;
+  background-color: #0B5ED7;
+  border-radius: 5px;
+  padding: 10px 15px;
+}
+
+.fa {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.follow a :hover{
+  color: #0B5ED7;
+}
+
+/* Log in & sign in form  */
+.form-signin{
+  width: 300px;
+  margin: 0 auto;
+}
+
+.form-control {
+  margin-top: 5px;
+}
+
+
+.login-page{
+  background-image: url(../images/best-movies.jpg);
+  background-size: cover;
+  background-position: 50% 0%;
+  height: 725px;
+  width: 100%;
+}
+
+.form{
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  height: 400px;
+  width: 350px;
+  border-radius: 10px;
+  margin: 0 auto;
+  position: absolute;
+  top: 200px;
+  left: 585px;
+}
+.checkbox{
+  color: white;
+}
+.form label{
+  color: gray;
+}
+::placeholder{
+  color: black;
+}
