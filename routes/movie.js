@@ -25,8 +25,10 @@ router.get('/movies', async (req, res) => {
 
 router.get('/movies/:movieId', async (req, res) => {
   try {
-  const movie = await imdbAPI.findById(req.params.movieId);
-  res.render('movie-detail', { movie });
+  const movie = await imdb.get({id: req.params.movieId}, {
+      apiKey: imdbAPI
+    });
+  res.render('movie-detail', {movie});
   } catch(e) {
       res.render('error');
       console.log(`An error occured (${e})`);
