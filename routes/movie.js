@@ -51,6 +51,12 @@ router.post('/movies/:imdbid/watchlist', async (req, res) => {
   res.redirect('/movies/watchlist')
 });
 
+router.post('/movies/:id/delete', async (req, res) => {
+  const id = req.params.id;
+  await Watchlist.findByIdAndDelete(id);
+  res.redirect('/movies/watchlist')
+});
+
 router.get('/movies/:movieId', async (req, res) => {
   try {
   const movie = await imdb.get({id: req.params.movieId}, {

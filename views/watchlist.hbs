@@ -7,6 +7,10 @@ ul {
 <h2>Watchlist</h2>
 <ul>{{#each watchlist}}
   <li>{{movie.title}}</li>
+  <form action="/movies/{{id}}/delete" method="POST">
+    <button type="submit">Delete</button>
+  </form>
+
   {{/each}}
 </ul>
 
