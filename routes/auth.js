@@ -25,8 +25,9 @@ router.post('/login', async (req, res) => {
   // the user and password match
   if (bcrypt.compareSync(password, user.password)) {
     req.session.currentUser = user;
-    res.render('index', { user });
-    // res.redirect('index', { user });
+    res.render('index', {user});
+    return;
+    //res.redirect('index', { user });
     //Sucessfull login
 
   } else{
@@ -39,13 +40,13 @@ router.post('/login', async (req, res) => {
 //Não faz sentido de aparecer "password is too weak" quando só enganaste a pass lol
 
 //Também meti a opção de logout
-router.post('/logout', async (req, res) => {
-  req.session.destroy();
-  res.redirect('/');
-})
+// router.post('/logout', async (req, res) => {
+//   req.session.destroy();
+//   res.redirect('/');
+// })
 
 router.get('/signup', (req, res) => {
-  res.render('auth/signup', {layout: 'customLayout'});
+  res.render('auth/signup' /*, {layout: 'customLayout'}*/);
 
 });
 
@@ -54,7 +55,7 @@ router.post('/signup', async (req, res) => {
   const {username, email, password} = req.body;
   // checking if username and password are filled out
   if (username=== '' || password === '') {
-    res.render('auth/signup', { layout: customLayout.hbs, errorMessage: 'Indicate username and password' })
+    res.render('auth/signup', { /*layout: customLayout.hbs,*/ errorMessage: 'Indicate username and password' })
   return;
   }
 

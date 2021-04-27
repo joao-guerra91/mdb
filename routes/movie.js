@@ -9,7 +9,7 @@ const User = require('../models/User.model');
 
 router.get('/movies/search', async (req, res) => {
   res.render('movies-search');
-})
+});
 
 router.get('/movies', async (req, res) => {
   let movieName = req.query.theMovieTitle;
@@ -24,14 +24,14 @@ router.get('/movies', async (req, res) => {
    return result.type !== 'game'
  });
 
-  res.render('movies-list', {moviesArray: filteredArray});
+  res.render('movies-list', {moviesArray: filteredArray, user: req.session.currentUser});
 });
 
 router.get('/movies/watchlist', async (req, res) => {
  // const movie = await imdb
  const loggedUser = await User.findById(req.session.currentUser._id);
  const watchlist = await Watchlist.find({ user: loggedUser});
- res.render('watchlist', { watchlist });
+ res.render('watchlist', { watchlist, user: loggedUser });
 })
 
 router.post('/movies/:imdbid/watchlist', async (req, res) => {

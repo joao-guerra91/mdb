@@ -1,3 +1,5 @@
+
+
 <h2>{{movie.title}}</h2>
 <hr>
 <img src="{{movie.poster}}" alt="">
@@ -11,5 +13,5 @@
 <p>Metascore: {{movie.metascore}}</p>
 <p>Rating: {{movie.rating}}</p>
     <form action="/movies/{{movie.imdbid}}/watchlist" method="POST">
-        <button type="submit">watchlist</button>
+        <button type="submit">Add watchlist</button>
     </form>

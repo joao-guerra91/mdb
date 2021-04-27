@@ -25,10 +25,17 @@
                 Account
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {{#if user}}
+                <li><p class="dropdown-item"> Welcome {{user.username}} </p></li>
+                <form action="/logout" method="POST">
+                <li><button class="dropdown-item" href="/logout">Logout</button></li>
+                </form>
+                <li><a class="dropdown-item" href="#">Account</a></li>
+                {{else}}
                 <li><a class="dropdown-item" href="/login">Log in</a></li>
                 <li><a class="dropdown-item" href="/signup">Sign up</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Account</a></li>
+                {{/if}}
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -39,7 +46,8 @@
                 <li><a class="dropdown-item" href="/movies">All movies</a></li>
                 <li><a class="dropdown-item" href="#">Top 100</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Watchlist</a></li>
+                <li>{{#if user}}<a class="dropdown-item" href="/movies/watchlist">Watchlist</a></li>
+                <li>{{else}}<a class="dropdown-item" href="/login">Watchlist</a>{{/if}}</li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -50,12 +58,16 @@
                 <li><a class="dropdown-item" href="#">All TV-Shows</a></li>
                 <li><a class="dropdown-item" href="#">Top 100</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Watchlist</a></li>
+                <li>{{#if user}}<a class="dropdown-item" href="/movies/watchlist">Watchlist</a></li>
+                <li>{{else}}<a class="dropdown-item" href="/login">Watchlist</a>{{/if}}</li>
               </ul>
             </li>
+            {{#if user}}
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="/movies/watchlist">My list</a>
+              {{else}}<a class="nav-link active" aria-current="page" href="/login">My list</a>
             </li>
+            {{/if}}
           </ul>
           <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
