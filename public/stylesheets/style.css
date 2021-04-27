@@ -56,6 +56,13 @@ a {
   text-align: left;
 }
 
+.list :hover{
+  color: #0B5ED7;
+}
+.newsletter {
+  line-height: 40px;
+}
+
 .newsletter-btn{
   color: white;
   background-color: #0B5ED7;
