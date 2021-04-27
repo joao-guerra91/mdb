@@ -43,7 +43,7 @@
                 Movies
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="/movies">All movies</a></li>
+                <li><a class="dropdown-item" href="/movies/search">Search movies</a></li>
                 <li><a class="dropdown-item" href="#">Top 100</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li>{{#if user}}<a class="dropdown-item" href="/movies/watchlist">Watchlist</a></li>
@@ -69,8 +69,8 @@
             </li>
             {{/if}}
           </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <form class="d-flex" action="/movies" method="GET">
+            <input class="form-control me-2" type="text" name="theMovieTitle" placeholder="search" aria-label="Search">
             <button class="btn btn-outline-primary" type="submit">Search</button>
           </form>
         </div>
