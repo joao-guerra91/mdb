@@ -8,7 +8,7 @@ const Watchlist = require('../models/Watchlist.model');
 const User = require('../models/User.model');
 
 router.get('/movies/search', async (req, res) => {
-  res.render('movies-search');
+  res.render('movies-search', {user: req.session.currentUser});
 });
 
 router.get('/movies', async (req, res) => {
@@ -56,7 +56,7 @@ router.get('/movies/:movieId', async (req, res) => {
   const movie = await imdb.get({id: req.params.movieId}, {
       apiKey: imdbAPI
     });
-  res.render('movie-detail', {movie});
+  res.render('movie-detail', {movie, user: req.session.currentUser});
   } catch(e) {
       res.render('error');
       console.log(`An error occured (${e})`);

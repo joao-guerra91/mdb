@@ -12,14 +12,14 @@ router.post('/login', async (req, res) => {
   const { username, password} = req.body;
   if (username === '' || password === '') {
     res.render('auth/login',
-    { errorMessage: 'Indicate username and password.' })
+    {layout: 'customLayout', errorMessage: 'Indicate username and password.' })
     return;
   }
 
   const user = await User.findOne({ username: username});
   if (user === null) {
     res.render('auth/login',
-    { errorMessage: 'Invalid username or password' })
+    {layout: 'customLayout', errorMessage: 'Invalid username or password' });
     return;
   }
   // the user and password match
@@ -33,7 +33,7 @@ router.post('/login', async (req, res) => {
   } else{
     //password dont match
     res.render('auth/login',
-    { errorMessage: 'Invalid username or password' })
+    {layout: 'customLayout', errorMessage: 'Invalid username or password' })
     return;
   }
 });
@@ -46,7 +46,7 @@ router.post('/login', async (req, res) => {
 // })
 
 router.get('/signup', (req, res) => {
-  res.render('auth/signup' /*, {layout: 'customLayout'}*/);
+  res.render('auth/signup', {layout: 'customLayout'});
 
 });
 
@@ -55,7 +55,7 @@ router.post('/signup', async (req, res) => {
   const {username, email, password} = req.body;
   // checking if username and password are filled out
   if (username=== '' || password === '') {
-    res.render('auth/signup', { /*layout: customLayout.hbs,*/ errorMessage: 'Indicate username and password' })
+    res.render('auth/signup', { layout: 'customLayout', errorMessage: 'Indicate username and password' })
   return;
   }
 
@@ -63,21 +63,21 @@ router.post('/signup', async (req, res) => {
   let user = await User.findOne({ username: username});
   if (user !== null) {
     res.render('auth/signup', 
-    { errorMesssage: 'Username already exists'})
+    {layout: 'customLayout', errorMesssage: 'Username already exists'})
     return;
   }
 
   user = await User.findOne({ email: email });
   if (user !== null) {
    res.render('auth/signup',
-   { errorMessage: 'Email already exists' })
+   {layout: 'customLayout', errorMessage: 'Email already exists' })
    return;
   };
 
   const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/
   if (passwordRegex.test(password) === false) {
    res.render('auth/signup', 
-   { errorMessage: 'Password is too weak' })
+   {layout: 'customLayout', errorMessage: 'Password is too weak' })
    return;
   }
   //Só para parecer mais realista
