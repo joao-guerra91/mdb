@@ -26,7 +26,7 @@ router.post('/login', async (req, res) => {
   if (bcrypt.compareSync(password, user.password)) {
     req.session.currentUser = user;
     res.render('index', {user});
-    return;
+    
     //res.redirect('index', { user });
     //Sucessfull login
 
