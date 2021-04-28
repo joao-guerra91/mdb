@@ -12,12 +12,19 @@
 <p>Rating: {{movie.rating}}</p>
 
     {{#if user}}
-    <form action="/movies/{{movie.imdbid}}/watchlist" method="POST">
-        <button type="submit">Add watchlist</button>
-    </form>
+    {{#contains moviesIds movie.imdbid}}
+    <p>Already added to favorites</p>
+
     {{else}}
-    <form action="/login">
+        <form action="/movies/{{movie.imdbid}}/watchlist" method="POST">
         <button type="submit">Add watchlist</button>
     </form>
+    {{/contains}}
+    {{else}}
+           <form action="/login">
+        <button type="submit">Login</button>
+    </form>
+ 
     {{/if}}
+    
     

@@ -9,6 +9,9 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 const session      = require('express-session');
+const helpers = require('handlebars-helpers');
+
+hbs.registerHelper(helpers())
 
 
 mongoose
@@ -37,7 +40,7 @@ app.use(
     cookie: {
       sameSite: true,
       httpOnly: true,
-      maxAge: 60000
+      maxAge: 300000
     }
   })
 )

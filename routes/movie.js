@@ -32,6 +32,7 @@ router.get('/movies/watchlist', async (req, res) => {
  const loggedUser = await User.findById(req.session.currentUser._id);
  const watchlist = await Watchlist.find({ user: loggedUser});
  res.render('watchlist', { watchlist, user: loggedUser });
+
 })
 
 router.post('/movies/:imdbid/watchlist', async (req, res) => {
@@ -40,21 +41,36 @@ router.post('/movies/:imdbid/watchlist', async (req, res) => {
   const movieTitle = await imdb.get({id: imdbid}, {
     apiKey: imdbAPI
   });
-  
+
+  const addList = await Watchlist.find({user: loggedUser});
+
+
+  let moviesIds = addList.map(film => {
+    return film.movie.id
+  })
+
+  if(moviesIds.includes(imdbid)) {
+    res.render('error', { error: 'Already in favorites'})
+    console.log('Already in your watchlist');
+    return;
+  } 
+
   await Watchlist.create({
     user: loggedUser,
     movie: {
       title: movieTitle.title,
       id: imdbid
-    }
-  });
-  res.redirect('/movies/watchlist')
+  }
+})
+
+res.redirect('/movies/watchlist')
+
 });
 
 router.post('/movies/:id/delete', async (req, res) => {
   const id = req.params.id;
   await Watchlist.findByIdAndDelete(id);
-  res.redirect('/movies/watchlist')
+  res.redirect('/movies/watchlist');
 });
 
 router.get('/movies/:movieId', async (req, res) => {
@@ -62,7 +78,13 @@ router.get('/movies/:movieId', async (req, res) => {
   const movie = await imdb.get({id: req.params.movieId}, {
       apiKey: imdbAPI
     });
-  res.render('movie-detail', {movie, user: req.session.currentUser});
+    const loggedUser = await User.findById(req.session.currentUser._id);
+    const watchlist = await Watchlist.find({ user: loggedUser});
+ 
+    let moviesIds = watchlist.map(film => {
+     return film.movie.id
+   });
+  res.render('movie-detail', {movie, user: req.session.currentUser, moviesIds});
   } catch(e) {
       res.render('error');
       console.log(`An error occured (${e})`);
