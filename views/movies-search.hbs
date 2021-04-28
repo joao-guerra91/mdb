@@ -1,17 +1,41 @@
 <style>
+
   .text-center{
-    height: 300px;
+    height: 400px;
+    background-image: url('/images/372730_b6f73.gif');
+    background-size: 70%;
+  }
+
+  #search{
+    height: 35px;
+    width: 300px;
+    border-radius: 30px;
+  }
+
+  ::placeholder{
+    color: white;
+  }
+
+  input {
+    background-color: #2A2C32;
+    opacity: 0.8;
   }
 
   .button {
-    margin-top: 150px;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 38px;
+    margin-top: 125px;
+    border-radius: 30px;
+    background-color: #2A2C32;
+    color: white;
   }
   
 </style>
-
-<h1>Search Movies</h1>
-
+<hr>
+<div>
 <form action="/movies" method="GET">
-  <input type="text" name="theMovieTitle" placeholder="Search for a movie">
+  <input id="search" type="text" name="theMovieTitle" placeholder="Search for a movie or a TV Show!">
   <button class="button" type="submit">Search</button>
 </form>
+</div>
