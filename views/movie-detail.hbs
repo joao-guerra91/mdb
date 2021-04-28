@@ -1,5 +1,5 @@
+<br>
 <h2>{{movie.title}}</h2>
-<hr>
 <img src="{{movie.poster}}" alt="">
 <p>Year: {{movie.year}}</p>
 <p>Time: {{movie.runtime}}</p>
@@ -11,13 +11,33 @@
 <p>Metascore: {{movie.metascore}}</p>
 <p>Rating: {{movie.rating}}</p>
 
-    {{#if user}}
-    <form action="/movies/{{movie.imdbid}}/watchlist" method="POST">
-        <button type="submit">Add watchlist</button>
-    </form>
-    {{else}}
-    <form action="/login">
-        <button type="submit">Add watchlist</button>
-    </form>
-    {{/if}}
-    
+{{#if user}}
+<form action="/movies/{{movie.imdbid}}/watchlist" method="POST">
+  <button type="submit">Add watchlist</button>
+</form>
+{{else}}
+  <form action="/login">
+    <button type="submit">Add watchlist</button>
+  </form>
+{{/if}}
+  <br>
+  <br>
+  <form action="/reviews/{{movie.imdbid}}/add" method="POST">
+  <label>
+    User
+  </label>
+  <input type="text" name="user">
+
+  <label>
+  Comment
+  </label>
+  <textarea name="comment"></textarea>
+  <button type="submit">Add Review</button>
+  </form>
+  <hr>
+
+{{#each movieReviews.reviews}}
+    <p>{{comment}} -- {{user}}</p>
+{{/each}}
+
+<hr>

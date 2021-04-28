@@ -6,6 +6,7 @@ const imdb = require('imdb-api');
 const imdbAPI = process.env.IMDB_KEY //melhor assim do que sempre escrever 'process.env...'
 const Watchlist = require('../models/Watchlist.model');
 const User = require('../models/User.model');
+const Reviews = require('../models/Reviews.model');
 
 router.get('/movies/search', async (req, res) => {
   res.render('movies-search', {user: req.session.currentUser});
@@ -59,14 +60,34 @@ router.post('/movies/:id/delete', async (req, res) => {
 
 router.get('/movies/:movieId', async (req, res) => {
   try {
+  const movieReviews = await Reviews.findOne({imdbId: req.params.movieId})
   const movie = await imdb.get({id: req.params.movieId}, {
       apiKey: imdbAPI
     });
-  res.render('movie-detail', {movie, user: req.session.currentUser});
+    // console.log(reviews)
+  res.render('movie-detail', {movie, user: req.session.currentUser, movieReviews});
   } catch(e) {
       res.render('error');
       console.log(`An error occured (${e})`);
   }
 });
+
+router.post('/reviews/:imdbId/add', async (req,res) => {
+  const imdbId = req.params.imdbId;
+  const { user, comment } = req.body;
+  const reviews = await Reviews.findOne({ imdbId : imdbId});
+
+  if (reviews) {
+    await Reviews.findByIdAndUpdate(reviews._id, {
+      $push: {reviews: {user, comment}}
+    });
+  } else {
+    await Reviews.create({
+      imdbId,
+      reviews: [{ user, comment}]
+  });
+}
+  res.redirect(`/movies/${imdbId}`)
+})
 
 module.exports = router
