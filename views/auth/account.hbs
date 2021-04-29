@@ -1,0 +1,24 @@
+<div class="login-page">
+  <div class="form">
+    <main class="form-signin">
+      <form action="/account" method="POST" enctype="multipart/form-data">
+        <a class="mdb-logo" href="/"><img src="/images/logo.png" alt="mbd-logo" style="width:150px;height:75px"></a>
+        <h1 class="h3 mb-3 fw-normal">Change account details</h1>
+        <div class="form-floating">
+          <input type="text" name="username" class="form-control" id="floatingInput" placeholder="username">
+          <label for="floatingInput">Username</label>
+        </div>
+        <div class="form-floating">
+          <input type="email" name="email" class="form-control" id="floatingPassword" placeholder="name@example.com">
+          <label for="floatingPassword">Email</label>
+        </div>
+        <div>
+          <label>Image</label>
+          <input type="file" name="image">
+        </div>
+        <br>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">submit changes</button>
+      </form>
+    </main>
+  </div>
+</div>

@@ -9,20 +9,19 @@ a {
 }
 
 </style>
-
+<br>
 <h1>Movies List</h1>
-
+  <br>
     <div class="row">
   {{#each moviesArray}}
       <div class="col-md-4">
-        <ul>
-          <li>
-            <h5><a href="/movies/{{imdbid}}">
-            {{title}}
-            </a></h5> 
-          </li>
-          <img src="{{poster}}" />
-        </ul>
+          <div class="image-efect">
+            <a href="/movies/{{imdbid}}"><img src="{{poster}}" class="image"/></a>
+            <div class="middle">
+              <div class="text"><a href=""><h5>{{title}}</h5></a></div>
+              <a href="/movies/{{imdbid}}"><button class="btn btn-outline-primary">See details</button></a>
+            </div>
+          </div>
       </div>
   {{/each}}
     </div>

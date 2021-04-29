@@ -211,3 +211,58 @@ a {
 .mb-100 {
   margin-bottom: 100px
 }
+
+/* LOGO */  
+.mdb-logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+/* MOVIE LIST IMAGE EFECT */
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+.middle h5{
+  position: relative;
+  bottom: 500px;
+  left: 225px;
+}
+.middle button{
+  position: relative;
+  bottom: 250px;
+  left: 220px;
+}
+
+.image-efect:hover .image {
+  opacity: 0.3;
+}
+
+.image-efect:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  /* background-color: #04AA6D; */
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+
+
+
