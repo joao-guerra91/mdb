@@ -14,6 +14,10 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  profilePic: {
+    type: String,
+    default: '/images/profile-icon.png',
+  },
   role: String
 });
 

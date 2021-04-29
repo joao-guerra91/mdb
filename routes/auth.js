@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User.model');
 const bcrypt = require('bcryptjs');
+const fileUpload = require('../configs/cloudinary');
+
 
 router.get('/login', (req, res) => {
   res.render('auth/login', {layout: 'customLayout'});
 })
 
-// Melhorei as mensagens de erro
 router.post('/login', async (req, res) => {
   const { username, password} = req.body;
   if (username === '' || password === '') {
@@ -37,13 +38,7 @@ router.post('/login', async (req, res) => {
     return;
   }
 });
-//Não faz sentido de aparecer "password is too weak" quando só enganaste a pass lol
 
-//Também meti a opção de logout
-// router.post('/logout', async (req, res) => {
-//   req.session.destroy();
-//   res.redirect('/');
-// })
 
 router.get('/signup', (req, res) => {
   res.render('auth/signup', {layout: 'customLayout'});
@@ -80,7 +75,6 @@ router.post('/signup', async (req, res) => {
    {layout: 'customLayout', errorMessage: 'Password is too weak' })
    return;
   }
-  //Só para parecer mais realista
 
   // create the user in the database
   const saltRounds = 10;
@@ -99,5 +93,20 @@ router.post('/logout', (req, res) => {
   res.redirect('/')
 });
 
+router.get('/account', (req, res) => {
+  res.render('auth/account', {layout: 'customLayout'});
+})
+
+router.post('/account', fileUpload.single('image'), async (req, res) => {
+  const userId = req.session.currentUser._id;
+  const fileOnClaudinary = req.file.path;
+  const {username, email} = req.body
+  await User.findByIdAndUpdate(userId, {
+    username,
+    email,
+    profilePic: fileOnClaudinary
+  });
+  res.redirect('/')
+})
 
 module.exports = router;
