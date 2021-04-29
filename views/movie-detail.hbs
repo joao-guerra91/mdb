@@ -1,15 +1,30 @@
 <br>
-<h2>{{movie.title}}</h2>
-<img src="{{movie.poster}}" alt="">
-<p>Year: {{movie.year}}</p>
-<p>Time: {{movie.runtime}}</p>
-<p>Director: {{movie.director}}</p>
-<p>Writer: {{movie.writer}}</p>
-<p>Actors: {{movie.actors}}</p>
-<p>Plot: {{movie.plot}}</p>
-<p>Awards: {{movie.awards}}</p>
-<p>Metascore: {{movie.metascore}}</p>
-<p>Rating: {{movie.rating}}</p>
+<br>
+<div class="card mb-3 style" style="max-width: 1000px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{movie.poster}}" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{movie.title}} <a href="`({{movie.year}})`"></a></h5>
+        <p class="card-text">{{movie.plot}}</p>
+        <p class="card-text"><small class="text-muted">Director: {{movie.director}}</small></p>
+        {{!-- <h2>{{movie.title}}</h2> --}}
+        {{!-- <img src="{{movie.poster}}" alt=""> --}}
+        <p>Year: {{movie.year}}</p>
+        <p>Time: {{movie.runtime}}</p>
+        {{!-- <p>Director: {{movie.director}}</p> --}}
+        <p>Writer: {{movie.writer}}</p>
+        <p>Actors: {{movie.actors}}</p>
+        {{!-- <p>Plot: {{movie.plot}}</p> --}}
+        <p>Awards: {{movie.awards}}</p>
+        <p>Metascore: {{movie.metascore}}</p>
+        <p>Rating: {{movie.rating}}</p>
+      </div>
+    </div>
+  </div>
+</div>
 
     {{#if user}}
     {{#contains moviesIds movie.imdbid}}
@@ -17,7 +32,7 @@
 
     {{else}}
         <form action="/movies/{{movie.imdbid}}/watchlist" method="POST">
-        <button type="submit">Add watchlist</button>
+        <button class="btn btn-outline-primary" type="submit">Add watchlist</button>
     </form>
     {{/contains}}
     {{else}}
@@ -26,8 +41,32 @@
     </form>
  
     {{/if}}
-  <br>
-  <br>
+
+<div class="container d-flex justify-content-center mt-100 mb-100">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Recent Comments</h4>
+                    <h6 class="card-subtitle">Latest Comments section by users</h6>
+                </div>
+            {{#each movieReviews.reviews}}
+                <div class="comment-widgets m-b-20">
+                    <div class="d-flex flex-row comment-row">
+                        <div class="p-2"><span class="round"><img src="/images/avatar-icon.png" alt="user" width="50"></span></div>
+                        <div class="comment-text w-100">
+                            <h5>{{user}}</h5>
+                            <div class="comment-footer"> <span class="date">April 14, 2019</span> <span class="label label-info">Pending</span> <span class="action-icons"> <a href="#" data-abc="true"><i class="fa fa-pencil"></i></a> <a href="#" data-abc="true"><i class="fa fa-rotate-right"></i></a> <a href="#" data-abc="true"><i class="fa fa-heart"></i></a> </span> </div>
+                            <br>
+                            <p class="m-b-5 m-t-10">{{comment}}</p>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
   <form action="/reviews/{{movie.imdbid}}/add" method="POST">
   <label>
     User
@@ -38,12 +77,7 @@
   Comment
   </label>
   <textarea name="comment"></textarea>
-  <button type="submit">Add Review</button>
+  <button class="btn btn-outline-primary" type="submit">Add Review</button>
   </form>
   <hr>
 
-{{#each movieReviews.reviews}}
-    <p>{{comment}} -- {{user}}</p>
-{{/each}}
-
-<hr>
