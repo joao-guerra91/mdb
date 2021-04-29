@@ -7,7 +7,7 @@
   }
 
   #search{
-    height: 35px;
+    height: 40px;
     width: 300px;
     border-radius: 30px;
   }
@@ -19,23 +19,31 @@
   input {
     background-color: #2A2C32;
     opacity: 0.8;
+    color: white;
   }
 
   .button {
     padding-left: 15px;
     padding-right: 15px;
-    height: 38px;
+    height: 40px;
     margin-top: 125px;
     border-radius: 30px;
     background-color: #2A2C32;
     color: white;
+  }
+
+  .search-bar {
+    position: relative;
+    top: 20px;
   }
   
 </style>
 <hr>
 <div>
 <form action="/movies" method="GET">
+<div class="search-bar">
   <input id="search" type="text" name="theMovieTitle" placeholder="Search for a movie or a TV Show!">
   <button class="button" type="submit">Search</button>
+  </div>
 </form>
 </div>

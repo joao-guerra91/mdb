@@ -55,8 +55,8 @@
                     <div class="d-flex flex-row comment-row">
                         <div class="p-2"><span class="round"><img src="/images/avatar-icon.png" alt="user" width="50"></span></div>
                         <div class="comment-text w-100">
-                            <h5>{{user}}</h5>
-                            <div class="comment-footer"> <span class="date">April 14, 2019</span> <span class="label label-info">Pending</span> <span class="action-icons"> <a href="#" data-abc="true"><i class="fa fa-pencil"></i></a> <a href="#" data-abc="true"><i class="fa fa-rotate-right"></i></a> <a href="#" data-abc="true"><i class="fa fa-heart"></i></a> </span> </div>
+                            <h5>{{user.username}}</h5>
+                            <div class="comment-footer"> <span class="date">{{time}}</span> <span class="label label-info">Approved</span> <span class="action-icons"> <a href="#" data-abc="true"><i class="fa fa-pencil"></i></a> <a href="#" data-abc="true"><i class="fa fa-rotate-right"></i></a> <a href="#" data-abc="true"><i class="fa fa-heart"></i></a> </span> </div>
                             <br>
                             <p class="m-b-5 m-t-10">{{comment}}</p>
                         </div>
@@ -68,10 +68,10 @@
     </div>
 </div>
   <form action="/reviews/{{movie.imdbid}}/add" method="POST">
-  <label>
-    User
+  {{!--<label>
+  User
   </label>
-  <input type="text" name="user">
+  <input type="text" name="user"> --}}
 
   <label>
   Comment

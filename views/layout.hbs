@@ -30,7 +30,7 @@
                 <form action="/logout" method="POST">
                 <li><button class="dropdown-item" href="/logout">Logout</button></li>
                 </form>
-                <li><a class="dropdown-item" href="#">Account</a></li>
+                <li><a class="dropdown-item" href="/account">Account</a></li>
                 {{else}}
                 <li><a class="dropdown-item" href="/login">Log in</a></li>
                 <li><a class="dropdown-item" href="/signup">Sign up</a></li>
@@ -44,7 +44,7 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="/movies/search">Search movies and TV Shows</a></li>
-                <li><a class="dropdown-item" href="#">Top 100</a></li>
+                <li><a class="dropdown-item" href="/views/error">Top 100</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li>{{#if user}}<a class="dropdown-item" href="/movies/watchlist">Watchlist</a></li>
                 <li>{{else}}<a class="dropdown-item" href="/login">Watchlist</a>{{/if}}</li>

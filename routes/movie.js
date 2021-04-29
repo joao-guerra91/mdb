@@ -76,7 +76,8 @@ router.post('/movies/:id/delete', async (req, res) => {
 
 router.get('/movies/:movieId', async (req, res) => {
   try {
-  const movieReviews = await Reviews.findOne({imdbId: req.params.movieId})
+  const movieReviews = await Reviews.findOne({imdbId: req.params.movieId}).populate('reviews.user')
+  console.log(movieReviews);
   const movie = await imdb.get({id: req.params.movieId}, {
       apiKey: imdbAPI
     });
@@ -86,7 +87,7 @@ router.get('/movies/:movieId', async (req, res) => {
     let moviesIds = watchlist.map(film => {
      return film.movie.id
    });
-  res.render('movie-detail', {movie, user: req.session.currentUser,  movieReviews, moviesIds});
+  res.render('movie-detail', {movie, user: req.session.currentUser, movieReviews, moviesIds});
     // console.log(reviews)
   } catch(e) {
       res.render('error');
@@ -98,15 +99,16 @@ router.post('/reviews/:imdbId/add', async (req,res) => {
   const imdbId = req.params.imdbId;
   const { user, comment } = req.body;
   const reviews = await Reviews.findOne({ imdbId : imdbId});
+  const loggedUser = await User.findById(req.session.currentUser);
 
   if (reviews) {
     await Reviews.findByIdAndUpdate(reviews._id, {
-      $push: {reviews: {user, comment}}
+      $push: {reviews: {user: req.session.currentUser._id, comment}}
     });
   } else {
     await Reviews.create({
       imdbId,
-      reviews: [{ user, comment}]
+      reviews: [{ user: req.session.currentUser._id, comment}]
   });
 }
   res.redirect(`/movies/${imdbId}`)

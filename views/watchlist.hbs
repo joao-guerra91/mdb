@@ -2,9 +2,43 @@
 ul {
   list-style-type: none;
 }
-</style>
 
+.letter-color {
+  text-decoration: none;
+}
+
+.letter-color:hover {
+  color: #0B5ED7;
+}
+</style>
+<br>
 <h2>Watchlist</h2>
+<br>
+<div class="row">
+  {{#each watchlist}}
+    <div class="col-md-2">
+      <ul>
+        <li><a class="letter-color" href="/movies/{{movie.id}}">{{movie.title}}</a></li>
+      </ul>
+    </div>
+  {{/each}}
+</div>
+    <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{!-- <h2>Watchlist</h2>
 <ul>{{#each watchlist}}
   <li>{{movie.title}}</li>
   <form action="/movies/{{id}}/delete" method="POST">
@@ -12,5 +46,5 @@ ul {
   </form>
 
   {{/each}}
-</ul>
+</ul> --}}
 
