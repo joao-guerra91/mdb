@@ -10,9 +10,13 @@ ul {
 .letter-color:hover {
   color: #0B5ED7;
 }
-
-.btn btn-outline-primary {
-  
+.watchlist-list{
+  display: flex;
+  justify-content: space-between;
+}
+.watchlist-delete-btn{
+  justify-content: right;
+  margin-bottom: 15px;
 }
 </style>
 <br>
@@ -20,15 +24,14 @@ ul {
 <br>
 <div class="row">
   {{#each watchlist}}
-    <div class="col-md-12">
-      <ul>
-        <li><a class="letter-color" href="/movies/{{movie.id}}">{{movie.title}}</a>
-        <img href="{{movie.poster}}"></li>
-      </ul>
-        <form action="/movies/{{id}}/delete" method="POST">
-    <button class="btn btn-outline-primary" type="submit">Delete</button>
-  </form>
-  <br>
+  <hr>
+    <div class="col-md-12 watchlist-list">
+        <a class="letter-color" href="/movies/{{movie.id}}">{{movie.title}}</a>
+        <div class="watchlist-delete-btn">
+          <form action="/movies/{{id}}/delete" method="POST">
+          <button class="btn btn-outline-primary" type="submit">Delete</button>
+          </form>
+        </div>
     </div>
   {{/each}}
 </div>

@@ -1,9 +1,9 @@
 <style>
 
   .text-center{
-    height: 400px;
+    height: 600px;
     background-image: url('/images/372730_b6f73.gif');
-    background-size: 70%;
+    background-size: contain;
   }
 
   #search{
@@ -35,15 +35,15 @@
     color: white;
   }
 
-  .search-bar {
+  .search-bar-search {
     position: relative;
-    top: 40px;
+    top: 140px;
   }
   
 </style>
 <div>
 <form action="/movies" method="GET">
-<div class="search-bar">
+<div class="search-bar-search">
   <input id="search" type="text" name="theMovieTitle" placeholder="Search for a movie or a TV Show!">
   <button class="button" type="submit">Search</button>
   </div>

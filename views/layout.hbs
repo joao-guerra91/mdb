@@ -47,7 +47,9 @@
           <ul class="nav-pic-ul">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle nav-pic" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{#if user}}
                 <img src="{{user.profilePic}}" alt="user" width="35" border-radius="100px">
+                {{/if}}
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 {{#if user}}
