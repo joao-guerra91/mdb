@@ -1,3 +1,29 @@
+<style>
+textarea {
+    border-radius: 10px;
+    background-color: #2A2C32;
+    opacity: 0.8;
+    color: white;
+    resize: none;
+    position: relative;
+    bottom: 90px;
+    width: 500px;
+    right: 110px;
+}
+
+::placeholder {
+    color: white;
+    opacity: 0.5;
+}
+
+#review-button {
+    position: relative;
+    bottom: 106px;
+    right: 80px;
+}
+</style>
+
+
 <br>
 <br>
 <div class="card mb-3 style" style="max-width: 1000px;">
@@ -73,11 +99,8 @@
   </label>
   <input type="text" name="user"> --}}
 
-  <label>
-  Comment
-  </label>
-  <textarea name="comment"></textarea>
-  <button class="btn btn-outline-primary" type="submit">Add Review</button>
+  <textarea name="comment" placeholder="Add a comment here"></textarea>
+  <button id="review-button" class="btn btn-outline-primary" type="submit">Add Review</button>
   </form>
   <hr>
 

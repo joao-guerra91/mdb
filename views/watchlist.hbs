@@ -10,16 +10,25 @@ ul {
 .letter-color:hover {
   color: #0B5ED7;
 }
+
+.btn btn-outline-primary {
+  
+}
 </style>
 <br>
 <h2>Watchlist</h2>
 <br>
 <div class="row">
   {{#each watchlist}}
-    <div class="col-md-2">
+    <div class="col-md-12">
       <ul>
-        <li><a class="letter-color" href="/movies/{{movie.id}}">{{movie.title}}</a></li>
+        <li><a class="letter-color" href="/movies/{{movie.id}}">{{movie.title}}</a>
+        <img href="{{movie.poster}}"></li>
       </ul>
+        <form action="/movies/{{id}}/delete" method="POST">
+    <button class="btn btn-outline-primary" type="submit">Delete</button>
+  </form>
+  <br>
     </div>
   {{/each}}
 </div>
