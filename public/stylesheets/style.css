@@ -22,6 +22,30 @@ a {
 }
 
 /*            NAVBAR           */
+.nav-pic img{
+  border-radius: 100px;
+  width: 45px;
+}
+.nav-pic{
+  padding: 0;
+  margin-right: 5px;
+}
+
+.nav-pic-ul{
+  margin: 0;
+}
+
+.search-bar{
+  width: 800px;
+}
+
+.me-2{
+  background-color: #2A2C32;
+  border: solid 1px #0B5ED7;
+}
+.form-control {
+  margin-top: 0px !important;
+}
 
 
 /*             BODY             */
